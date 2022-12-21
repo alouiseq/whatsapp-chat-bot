@@ -7,7 +7,7 @@ app = Flask(__name__)
 failed_msg = 'Oh no! I can\'t find a {} for you at this time.'
 no_data_msg = 'Whoops, I seem to be missing that data! Ask me about famous quotes, jokes, cats, dogs, and memes instead!'
 
-def getData(req_url, headers={'accept': 'application/json'}, params={}):
+def getJsonData(req_url, headers={'accept': 'application/json'}, params={}):
     r = requests.get(req_url, headers=headers, params=params)
     if r.status_code == 200:
         return r.json()
@@ -20,7 +20,7 @@ def bot():
     searched = False
 
     if 'quote' in incoming_msg:
-        data = getData('https://api.quotable.io/random')
+        data = getJsonData('https://api.quotable.io/random')
         if data:
             quote = f'{data["content"]} ({data["author"]})'
         else:
@@ -29,7 +29,7 @@ def bot():
         msg.body(quote)
         searched = True
     if 'joke' in incoming_msg:
-        data = getData('https://icanhazdadjoke.com')
+        data = getJsonData('https://icanhazdadjoke.com')
         if data:
             joke = data['joke']
         else:
@@ -41,7 +41,7 @@ def bot():
         searched = True
     if 'dog' in incoming_msg:
         breed = None
-        data = getData('https://dog.ceo/api/breeds/list/all')
+        data = getJsonData('https://dog.ceo/api/breeds/list/all')
         if data:
             breeds = list(data['message'].keys())
 
@@ -51,9 +51,9 @@ def bot():
                 break
 
         if breed:
-            data = getData(f'https://dog.ceo/api/breed/{breed}/images/random')
+            data = getJsonData(f'https://dog.ceo/api/breed/{breed}/images/random')
         else:
-            data = getData('https://dog.ceo/api/breeds/image/random')
+            data = getJsonData('https://dog.ceo/api/breeds/image/random')
 
         if data:
             dog_url = data['message']
@@ -72,7 +72,7 @@ def bot():
             "X-RapidAPI-Host": "humor-jokes-and-memes.p.rapidapi.com"
         }
 
-        data = getData(url, headers, querystring)
+        data = getJsonData(url, headers, querystring)
 
         if data:
             msg.media(data['url'])
