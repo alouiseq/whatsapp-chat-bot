@@ -1,1 +1,1 @@
-# whatsapp-sports-bot
+# whatsapp-chat-bot
