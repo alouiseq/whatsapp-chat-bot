@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/Users/alouiseq/code/whatsapp-sports-bot/whatsapp-sports-bot-venv"
+setenv VIRTUAL_ENV "/Users/alouiseq/code/whatsapp-chat-bot/whatsapp-chat-bot-venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
@@ -17,8 +17,8 @@ setenv PATH "$VIRTUAL_ENV/bin:$PATH"
 set _OLD_VIRTUAL_PROMPT="$prompt"
 
 if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
-    if ("whatsapp-sports-bot-venv" != "") then
-        set env_name = "whatsapp-sports-bot-venv"
+    if ("whatsapp-chat-bot-venv" != "") then
+        set env_name = "whatsapp-chat-bot-venv"
     else
         if (`basename "VIRTUAL_ENV"` == "__") then
             # special case for Aspen magic directories

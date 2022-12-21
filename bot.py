@@ -5,10 +5,10 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 failed_msg = 'Oh no! I can\'t find a {} for you at this time.'
-no_data_msg = 'Whoops, I seem to be missing that data! Ask me about famous quotes, cats, dogs, and jokes instead!'
+no_data_msg = 'Whoops, I seem to be missing that data! Ask me about famous quotes, jokes, cats, dogs, and memes instead!'
 
-def getData(req_url, headers={'accept': 'application/json'}):
-    r = requests.get(req_url, headers=headers)
+def getData(req_url, headers={'accept': 'application/json'}, params={}):
+    r = requests.get(req_url, headers=headers, params=params)
     if r.status_code == 200:
         return r.json()
 
@@ -62,6 +62,22 @@ def bot():
             dog = failed_msg.format('dog')
             msg.body(dog)
 
+        searched = True
+    if 'meme' in incoming_msg:
+        keywords = incoming_msg.replace(' ', ',').replace(',meme', '').replace('meme,', '')
+        url = "https://humor-jokes-and-memes.p.rapidapi.com/memes/random"
+        querystring = {"keywords":f"{keywords}","number":"3","media-type":"image","keywords-in-image":"false","min-rating":"4"}
+        headers = {
+            "X-RapidAPI-Key": "d16b6e4142mshfff4f1f121ab449p1088cajsnfabf9adc12f5",
+            "X-RapidAPI-Host": "humor-jokes-and-memes.p.rapidapi.com"
+        }
+
+        data = getData(url, headers, querystring)
+
+        if data:
+            msg.media(data['url'])
+        else:
+            msg.body(failed_msg.format('meme'))
         searched = True
     if not searched:
         msg.body(no_data_msg)

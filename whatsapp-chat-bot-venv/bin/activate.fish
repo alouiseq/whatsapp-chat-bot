@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/alouiseq/code/whatsapp-sports-bot/whatsapp-sports-bot-venv"
+set -gx VIRTUAL_ENV "/Users/alouiseq/code/whatsapp-chat-bot/whatsapp-chat-bot-venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
@@ -52,8 +52,8 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
         set -l old_status $status
 
         # Prompt override?
-        if test -n "(whatsapp-sports-bot-venv) "
-            printf "%s%s" "(whatsapp-sports-bot-venv) " (set_color normal)
+        if test -n "(whatsapp-chat-bot-venv) "
+            printf "%s%s" "(whatsapp-chat-bot-venv) " (set_color normal)
         else
             # ...Otherwise, prepend env
             set -l _checkbase (basename "$VIRTUAL_ENV")

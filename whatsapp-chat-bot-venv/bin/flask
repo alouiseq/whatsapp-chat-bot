@@ -1,4 +1,4 @@
-#!/Users/alouiseq/code/whatsapp-sports-bot/whatsapp-sports-bot-venv/bin/python3
+#!/Users/alouiseq/code/whatsapp-chat-bot/whatsapp-chat-bot-venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
